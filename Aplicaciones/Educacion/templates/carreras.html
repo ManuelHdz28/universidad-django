@@ -1,0 +1,46 @@
+{% extends "plantilla.html" %}  {% load static %}
+{% block titulo %}
+    <title>Universidad Carreras</title>
+{% endblock titulo  %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center mt-4">Carreras Universitarias</h1>
+                <a href="" class="btn btn-primary mb-4">Nueva Carrera</a>
+                {% if carreras  %}
+                 <div class="table-responsive">
+                    <table class="table table-hover table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha de Creacion</th>
+                                <th>Telefono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for carrera in carreras %}
+                                <tr>
+                                    <td>{{ carrera.nombre_car }}</td>
+                                    <td>{{ carrera.fecha_creacion_car }}</td>
+                                    <td>{{ carrera.telefono_car }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-warning">Editar</a>
+                                        <a href="" class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            
+                </div>
+                {% else %}
+                    <div class="alert alert-warning mt-4 text-center">
+                        <strong>No hay carreras registradas.</strong>
+                    </div>
+                {% endif %}
+        </div>
+{%  endblock contenido %}
+
