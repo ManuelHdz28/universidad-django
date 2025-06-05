@@ -10,3 +10,4 @@ class Carrera(models.Model):
     def __str__(self): # * ESTA FUNCION HACE QUE AL MOMENTO DE IMPRIMIR UN OBJETO DE ESTA CLASE, SE MUESTRE EL NOMBRE DE LA CARRERA
         return self.nombre_car 
     
+    

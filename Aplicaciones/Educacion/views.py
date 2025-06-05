@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Carrera
 
 # Create your views here.
@@ -12,3 +12,21 @@ def carreras(request):
     print(carrerasDbb)
     
     return render(request, 'carreras.html', {'carreras': carrerasDbb})
+
+def crear_carrera(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre_car')
+        fecha_creacion = request.POST.get('fecha_creacion_car')
+        telefono = request.POST.get('telefono_car')
+        
+        Carrera.objects.create(
+            nombre_car=nombre,
+            fecha_creacion_car=fecha_creacion,
+            telefono_car=telefono
+        )
+        
+        return redirect('/carreras')
+        
+        
+    
+  
