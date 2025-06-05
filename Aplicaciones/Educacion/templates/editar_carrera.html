@@ -1,61 +1,15 @@
 {% extends "plantilla.html" %} {% load static %} {% block titulo %}
-<title>Universidad Carreras</title>
+<title>Editar Carrera</title>
 {% endblock titulo %} {% block contenido %}
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-center mt-4">Carreras Universitarias</h1>
-
-      <!-- Button trigger modal -->
-      <button
-        type="button"
-        class="btn btn-primary mb-4"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-       + Nueva Carrera
-      </button>
+      <h1 class="text-center mt-4">Editar Carrera</h1>
 
       
-      {% if carreras %}
-      <div class="table-responsive">
-        <table class="table table-hover table-striped text-center">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Fecha de Creacion</th>
-              <th>Telefono</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for carrera in carreras %}
-            <tr>
-              <td>{{ carrera.nombre_car }}</td>
-              <td>{{ carrera.fecha_creacion_car }}</td>
-              <td>{{ carrera.telefono_car }}</td>
-              <td>
-                <a href="{% url 'editar_carrera' carrera.id_car %}" class="btn btn-warning">Editar</a>
-                <a href="{% url 'eliminar_carrera' carrera.id_car %}" class="btn btn-danger">Eliminar</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      {% else %}
-      <div class="alert alert-warning mt-4 text-center">
-        <strong>No hay carreras registradas.</strong>
-      </div>
-      {% endif %}
-    </div>
 
-    
-  </div>
-</div>
-
-
-<!-- ! Modal Agregar Carrera -->
+   <!-- ! Modal Editar Carrera -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -66,7 +20,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Carrera</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Carrera</h1>
             <button
               type="button"
               class="btn-close"
@@ -84,7 +38,7 @@
                       name="nombre_car"
                       class="form-control"
                       id="nombre_car"
-                      placeholder="Ingrese el nombre de la carrera"
+                      value="{{ carrera.nombre_car }}"
                       required>
                 </div>
                 <div class="mb-3"> 
@@ -93,6 +47,7 @@
                       type="date"
                       name="fecha_creacion_car"
                       class="form-control"
+                      value="{{ carrera.fecha_creacion_car|date:'Y-m-d' }}"
                       id="fecha_creacion_car"
                       required>
                 </div>
@@ -103,18 +58,17 @@
                       name="telefono_car"
                       class="form-control"
                       id="telefono_car"
-                      placeholder="7723-7392"
+                      value="{{ carrera.telefono_car }}"
                       required>
                 </div>
                 <div class="modal-footer">
-            <button
+            <a href="{% url 'carreras' %}"
               type="button"
               class="btn btn-secondary"
-              data-bs-dismiss="modal"
             >
               Cancelar
-            </button>
-            <button type="submit" class="btn btn-primary">Guardar Carrera</button>
+                </a>
+            <button type="submit" class="btn btn-primary">Actualizar Carrera</button>
           </div>
             </form>
           </div>
@@ -125,8 +79,12 @@
 
 
 
-
-
-   
-
-    {% endblock contenido %}
+<script>
+    const modal = document.getElementById('exampleModal');
+    document.addEventListener('DOMContentLoaded', function () {
+        const myModal = new bootstrap.Modal(modal);
+        myModal.show();
+    });
+       
+</script>
+  {% endblock contenido %}
