@@ -36,7 +36,7 @@
               <td>{{ carrera.telefono_car }}</td>
               <td>
                 <a href="{% url 'editar_carrera' carrera.id_car %}" class="btn btn-warning">Editar</a>
-                <a href="{% url 'eliminar_carrera' carrera.id_car %}" class="btn btn-danger">Eliminar</a>
+                <a href="javascript:void(0)" onclick="eliminarFila('/eliminar_carrera/{{carrera.id_car}}', 'Carrera')" class="btn btn-danger">Eliminar</a> <!-- Assuming you have a JavaScript function to handle deletion -->
               </td>
             </tr>
             {% endfor %}

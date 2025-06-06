@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages # * Importa el módulo Path de pathlib para manejar rutas de archivos
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Application definition
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage' # * Configura el almacenamiento de mensajes para usar la sesión
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -103,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-sv'
+LANGUAGE_CODE = 'es-sv' # * Establece el código de idioma a español de El Salvador
 
-TIME_ZONE = 'Etc/GMT+6'
+TIME_ZONE = 'Etc/GMT+6' # * Establece la zona horaria a GMT-6, que es la zona horaria de El Salvador
 
 USE_I18N = True
 
