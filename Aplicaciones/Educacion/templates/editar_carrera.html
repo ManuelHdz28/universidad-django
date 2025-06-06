@@ -16,6 +16,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -29,7 +30,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="{% url 'crear_carrera' %}" method="POST">
+            <form action="{% url 'editar_carrera' carrera.id_car %}" method="POST">
                 {% csrf_token %} <!-- CSRF Token for security -->
                 <div class="mb-3"> 
                     <label for="nombreCarrera" class="form-label"> Nombre de la Carrera </label>

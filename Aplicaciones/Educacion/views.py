@@ -50,7 +50,24 @@ def editar_carrera(request, id):
     
     except Carrera.DoesNotExist:
         return render(request, 'error.html', {'message': 'Carrera no encontrada.'})
+
+def procesar_editar_carrera(request, id):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre_car')
+        fecha_creacion = request.POST.get('fecha_creacion_car')
+        telefono = request.POST.get('telefono_car')
         
-        
+        try:
+            carreradb = Carrera.objects.get(id_car=id)
+            carreradb.nombre_car = nombre
+            carreradb.fecha_creacion_car = fecha_creacion
+            carreradb.telefono_car = telefono
+            carreradb.save()
+            return redirect('/carreras')
+        except Carrera.DoesNotExist:
+            return render(request, 'error.html', {'message': 'Carrera no encontrada.'})    
+    
+      
+
     
   
